@@ -293,7 +293,8 @@ class DbtHook(BaseHook):
                 saved_artifacts = {}
                 for artifact in artifacts:
                     artifact_path = Path(dbt_dir) / "target" / artifact
-                    self.log.info(Path(dbt_dir).glob('**/*'))
+                    for file_or_dir in Path(dbt_dir).glob('**/*'):
+                        self.log.info(file_or_dir)
                     if not artifact_path.exists():
                         self.log.warning(
                             "Required dbt artifact %s was not found. "
